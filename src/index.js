@@ -1,6 +1,6 @@
 import express from "express";
 import handlebars from "express-handlebars";
-import homeController from './controllers/homeController.js'
+import routes from './routes.js'
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.set("views", "./src/views");
 
 app.use(express.static('public'));
 
-app.use(homeController);
+app.use(routes)
 
 app.listen(3000, () =>
   console.log("Surver is listening on http://localhost:3000")
