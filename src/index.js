@@ -4,6 +4,8 @@ import routes from './routes.js'
 
 const app = express();
 
+
+
 app.engine(
   "hbs",
   handlebars.engine({
