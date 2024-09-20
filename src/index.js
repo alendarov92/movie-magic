@@ -14,7 +14,7 @@ app.set("view engine", "hbs");
 app.set("views", "./src/views");
 
 app.get("/", (req, res) => {
-  res.render('index')
+  res.render("index");
 });
 
 app.listen(3000, () =>
