@@ -14,7 +14,8 @@ router.get("/about", (req, res) => {
     res.render("home/about");
 });
 
-router.get("/search", (req, res) => {
+router.get("/search", async(req, res) => {
+    const movies = await movieSurvice.getAll();
     res.render("home/search", { movies });
 });
 

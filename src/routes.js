@@ -1,11 +1,11 @@
 import {Router} from 'express';
 
 import homeController from './controllers/homeController.js'
-import postController from './controllers/postCpntroller.js'
+import movieController from './controllers/movieCpntroller.js'
 
 const router = Router();
 
 router.use(homeController)
-router.use(postController)
+router.use('/movies',movieController)
 
 export default router;
