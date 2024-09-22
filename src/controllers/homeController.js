@@ -4,8 +4,8 @@ import movieSurvice from "../services/movieSurvice.js";
 const router = Router();
 
 
-router.get("/", (req, res) => {
-    const movies = movieSurvice.getAll();
+router.get("/", async (req, res) => {
+    const movies = await movieSurvice.getAll();
 
     res.render("home", { movies });
 });
