@@ -1,13 +1,13 @@
 <section id="catalog">
-  <h1>All Movies</h1>
-  <div class="band">
+    <h1>All Movies</h1>
+    <div class="band">
 
-    {{#each movies}}            
-      {{>movie}}
-    {{else}}
-    <div class="no-posts">
-      <p class="no-offer">There are no posts yet...</p>
+        {{#each movies}}
+            {{>movie}}
+        {{else}}
+        <div class="no-posts">
+            <p class="no-offer">There are no movies yet...</p>
+        </div>
+        {{/each}}
     </div>
-  </div>
-  {{/each}}
 </section>
