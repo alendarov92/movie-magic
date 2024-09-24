@@ -17,6 +17,14 @@ router.post('/create', async (req, res) => {
    res.redirect('/')
 })
 
+// ======> Render Search
+router.get('/search', async (req, res) => {
+   const filter = req.query;
+   const movies = await movieSurvice.getAll(filter);
+
+   res.render('home', { isSearch: true, movies, filter });
+});
+
 // =======> Details
 
 router.get('/:movieId/details', async (req, res) => {
@@ -28,6 +36,7 @@ router.get('/:movieId/details', async (req, res) => {
    res.render('movies/details', {movie})
 })
 
+// =======> RATING
 function getRatingViewData(rating) {
    if (!Number.isInteger(rating)) {
       return 'n\\a';
