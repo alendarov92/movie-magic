@@ -7,6 +7,7 @@ const getAll = () => movieData.getMovies();
 
 const create = (movie) => {
     movie.id = uniqid();
+    movie.rating = Number(movie.rating)
     return movieData.create(movie);
 };
 
