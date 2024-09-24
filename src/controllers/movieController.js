@@ -3,17 +3,27 @@ import movieSurvice from "../services/movieSurvice.js";
 
 const router = Router();
 
+// ======> CREATING A NEW MOVIE
+      //GET THE TEMPLATE
 router.get('/create', (req, res) => {
    res.render('movies/create')
 })
-
+      //MAKING THE LOGIC
 router.post('/create', async (req, res) => {
    const movieData = req.body;
 
    await movieSurvice.create(movieData)
    
    res.redirect('/')
-   res.end()
+})
+
+// =======> Details
+
+router.get('/:movieId/details', async (req, res) => {
+   const movieId = req.params.movieId;
+   const movie = await movieSurvice.getOne(movieId);
+
+   res.render('movies/details', {movie})
 })
 
 export default router;

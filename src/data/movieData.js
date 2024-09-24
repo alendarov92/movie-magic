@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const dbPath = path.resolve('./src/db.json');
+
 // Take all the data
 async function getDb() {
     const jsonResult = await fs.readFile(dbPath, {encoding: 'utf-8'});
