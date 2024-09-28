@@ -1,7 +1,5 @@
-{
-  "movies": [
+ [
     {
-      "id": "k56rdqcmafdadfa1do3nuy",
       "title": "Cuise",
       "genre": "Adventure",
       "imageUrl": "/img/jungle-cruise.jpeg",
@@ -9,7 +7,6 @@
       "description": "Dreaming about saving countless lives and having anotheradventure, the feisty English feminist and doctor of botany, Dr LilyHoughton, embarks on a peril-laden mission to change the world. Alongwith her fashionable brother, MacGregor, Dr Houghton enlists the helpof the arrogant, wisecracking riverboat skipper, Captain Frank Wolff,to guide them through the serpentine Amazon River in La Quila, hisswift wooden boat. Now, as the intrepid trio ventures deeper anddeeper into the heart of an impenetrable green maze, searching forsomething that cannot be found, a centuries-old curse and the ruthlessaristocrat, Prince Joachim, threaten to put an end to their ambitiousplans."
     },
     {
-      "id": "k56rasdfadqcm1do3nuy",
       "title": "The Little Mermaid",
       "genre": "Fantasy",
       "imageUrl": "/img/the-little-mermaid.jpg",
@@ -17,7 +14,6 @@
       "description": "The youngest of King Triton's daughters, Ariel is abeautiful and spirited young mermaid with a thirst for adventure.Longing to find out more about the world beyond the sea, Ariel visitsthe surface and falls for the dashing Prince Eric. Following herheart, she makes a deal with the evil sea witch, Ursula, to experiencelife on land."
     },
     {
-      "id": "k56rdqcm1doadfsa3nuy",
       "title": "Home Alone",
       "genre": "Comedy",
       "imageUrl": "/img/home-alone.jpeg",
@@ -31,8 +27,6 @@
       "year": "2001",
       "imageUrl": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg",
       "rating": 9,
-      "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
-      "id": "k56rdqcm1do3nuy"
+      "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
     }
   ]
-}
