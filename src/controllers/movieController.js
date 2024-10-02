@@ -4,16 +4,16 @@ import movieSurvice from "../services/movieSurvice.js";
 const router = Router();
 
 // ======> CREATING A NEW MOVIE
-      //GET THE TEMPLATE
+//GET THE TEMPLATE
 router.get('/create', (req, res) => {
    res.render('movies/create')
 })
-      //MAKING THE LOGIC
+//MAKING THE LOGIC
 router.post('/create', async (req, res) => {
    const movieData = req.body;
 
    await movieSurvice.create(movieData)
-   
+
    res.redirect('/')
 })
 
@@ -29,11 +29,11 @@ router.get('/search', async (req, res) => {
 
 router.get('/:movieId/details', async (req, res) => {
    const movieId = req.params.movieId;
-   const movie = await movieSurvice.getOne(movieId);
+   const movie = await movieSurvice.getOne(movieId).lean();
 
    movie.ratingView = getRatingViewData(movie.rating);
 
-   res.render('movies/details', {movie})
+   res.render('movies/details', { movie })
 })
 
 // =======> RATING
