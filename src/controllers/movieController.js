@@ -1,5 +1,7 @@
 import { Router } from "express";
 import movieSurvice from "../services/movieSurvice.js";
+import castSurvice from "../services/castService.js";
+
 
 const router = Router();
 
@@ -50,8 +52,12 @@ function getRatingViewData(rating) {
 
 // =======> Cast
 
-router.get('/:movieId/attach', (req, res) => {
-   res.render('movies/attach')
+router.get('/:movieId/attach', async (req, res) => {
+   const movie = await movieSurvice.getOne(req.params.movieId).lean();
+   const casts = await castSurvice.getAll().lean();
+
+   res.render('movies/attach', {movie, casts})
+
 })
 
 export default router;
