@@ -3,6 +3,10 @@ import movieSurvice from "../services/movieSurvice.js";
 
 const router = Router();
 
+function toArray(documents) {
+   return documents.map(document => document.toObject())
+}
+
 // ======> CREATING A NEW MOVIE
 //GET THE TEMPLATE
 router.get('/create', (req, res) => {
@@ -22,7 +26,7 @@ router.get('/search', async (req, res) => {
    const filter = req.query;
    const movies = await movieSurvice.getAll(filter);
 
-   res.render('home', { isSearch: true, movies, filter });
+   res.render('home', { isSearch: true, movies: toArray(movies), filter });
 });
 
 // =======> Details
