@@ -48,4 +48,10 @@ function getRatingViewData(rating) {
    return '&#x2605;'.repeat(rating);
 }
 
+// =======> Cast
+
+router.get('/:movieId/attach', (req, res) => {
+   res.render('movies/attach')
+})
+
 export default router;
