@@ -36,7 +36,7 @@ router.get('/search', async (req, res) => {
 router.get('/:movieId/details', async (req, res) => {
    const movieId = req.params.movieId;
    const movie = await movieSurvice.getOne(movieId).lean();
-
+   
    movie.ratingView = getRatingViewData(movie.rating);
 
    res.render('movies/details', { movie })
@@ -60,4 +60,14 @@ router.get('/:movieId/attach', async (req, res) => {
 
 })
 
-export default router;
+router.post('/:movieId/attach', async (req, res) => {
+   const movieId = req.params.movieId;
+   const castId = req.body.cast;
+
+  await movieSurvice.attach(movieId, castId)
+
+    res.redirect(`/movies/${movieId}/details`)
+
+})
+
+export default router;  
