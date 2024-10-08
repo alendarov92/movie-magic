@@ -6,67 +6,67 @@ import castSurvice from "../services/castService.js";
 const router = Router();
 
 function toArray(documents) {
-   return documents.map(document => document.toObject())
+    return documents.map(document => document.toObject())
 }
 
 // ======> CREATING A NEW MOVIE
 //GET THE TEMPLATE
 router.get('/create', (req, res) => {
-   res.render('movies/create')
+    res.render('movies/create')
 })
 //MAKING THE LOGIC
 router.post('/create', async (req, res) => {
-   const movieData = req.body;
+    const movieData = req.body;
 
-   await movieSurvice.create(movieData)
+    await movieSurvice.create(movieData)
 
-   res.redirect('/')
+    res.redirect('/')
 })
 
 // ======> Render Search
 router.get('/search', async (req, res) => {
-   const filter = req.query;
-   const movies = await movieSurvice.getAll(filter);
+    const filter = req.query;
+    const movies = await movieSurvice.getAll(filter).lean();
 
-   res.render('home', { isSearch: true, movies: toArray(movies), filter });
+    res.render('home', { isSearch: true, movies, filter });
 });
 
 // =======> Details
 
 router.get('/:movieId/details', async (req, res) => {
-   const movieId = req.params.movieId;
-   const movie = await movieSurvice.getOne(movieId).lean();
-   
-   res.render('movies/details', { movie })
+    const movieId = req.params.movieId;
+    const movie = await movieSurvice.getOne(movieId).lean();
+
+    res.render('movies/details', { movie })
 })
 
-// =======> Cast
+// =======> Cast attach
 
 router.get('/:movieId/attach', async (req, res) => {
-   const movie = await movieSurvice.getOne(req.params.movieId).lean();
-   const casts = await castSurvice.getAll().lean();
+    const movie = await movieSurvice.getOne(req.params.movieId).lean();
+    const casts = await castSurvice.getAll().lean();
 
-   res.render('movies/attach', {movie, casts})
+    res.render('movies/attach', { movie, casts })
 
 })
 
 router.post('/:movieId/attach', async (req, res) => {
-   const movieId = req.params.movieId;
-   const castId = req.body.cast;
+    const movieId = req.params.movieId;
+    const castId = req.body.cast;
 
-  await movieSurvice.attach(movieId, castId)
+    await movieSurvice.attach(movieId, castId)
 
     res.redirect(`/movies/${movieId}/details`)
 
 })
 
-// ======>
- router.get('/:movieId/delete', async (req, res) => {
+// ======> Delete
+router.get('/:movieId/delete', async (req, res) => {
     const movieId = req.params.movieId;
     await movieSurvice.remove(movieId);
 
     res.redirect('/')
 
- })
+})
 
 export default router;  

@@ -8,11 +8,11 @@ function toArray(documents) {
 }
 
 router.get("/", async (req, res) => {
-    const movies = await movieSurvice.getAll();
+    const movies = await movieSurvice.getAll().lean();
 
-    res.render("home", { movies: toArray(movies) });
+    res.render("home", { movies });
     
-});
+}); 
 
 router.get("/about", (req, res) => {
     res.render("home/about");
