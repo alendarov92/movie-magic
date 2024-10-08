@@ -44,7 +44,7 @@ router.get('/:movieId/details', async (req, res) => {
 
 router.get('/:movieId/attach', async (req, res) => {
     const movie = await movieSurvice.getOne(req.params.movieId).lean();
-    const casts = await castSurvice.getAll().lean();
+    const casts = await castSurvice.getAllWithout(movie.casts).lean();
 
     res.render('movies/attach', { movie, casts })
 
