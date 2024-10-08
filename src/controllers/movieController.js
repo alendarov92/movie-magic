@@ -37,18 +37,8 @@ router.get('/:movieId/details', async (req, res) => {
    const movieId = req.params.movieId;
    const movie = await movieSurvice.getOne(movieId).lean();
    
-   movie.ratingView = getRatingViewData(movie.rating);
-
    res.render('movies/details', { movie })
 })
-
-// =======> RATING
-function getRatingViewData(rating) {
-   if (!Number.isInteger(rating)) {
-      return 'n\\a';
-   }
-   return '&#x2605;'.repeat(rating);
-}
 
 // =======> Cast
 
@@ -69,5 +59,14 @@ router.post('/:movieId/attach', async (req, res) => {
     res.redirect(`/movies/${movieId}/details`)
 
 })
+
+// ======>
+ router.get('/:movieId/delete', async (req, res) => {
+    const movieId = req.params.movieId;
+    await movieSurvice.remove(movieId);
+
+    res.redirect('/')
+
+ })
 
 export default router;  
