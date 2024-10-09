@@ -3,6 +3,7 @@ import castService from "../services/castService.js";
 
 const router = Router();
 
+
 router.get('/create', (req, res) => {
    res.render('cast/create')
 })

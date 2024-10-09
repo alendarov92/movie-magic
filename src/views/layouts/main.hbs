@@ -1,37 +1,42 @@
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Catalog Page</title>
     <!-- Do not forget to change the path to the css file -->
     <link href="/css/style.css" type="text/css" rel="stylesheet" />
-  </head>
+</head>
 
-  <body>
+<body>
 
     <div id="box">
 
-      <nav>
-        <img src="/img/logo.webp" alt="logo" />
+        <nav>
+            <img src="/img/logo.webp" alt="logo" />
 
-        <ul class="menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/movies/create">Create Post</a></li>
-           <li><a href="/cast/create">Create Cast</a></li>
-          <li><a href="/movies/search">Search</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/movies/search">Search</a></li>
+                <!--Users-->
+                <li><a href="/movies/create">Create Post</a></li>
+                <li><a href="/cast/create">Create Cast</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                <!--Guest-->
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+            </ul>
 
-      </nav>
+        </nav>
 
-      <main>
-        {{{body}}}
-      </main>
-      <footer>
-        © JS Back-End Workshop
-      </footer>
+        <main>
+            {{{body}}} 
+        </main>
+        <footer>
+            © JS Back-End Workshop
+        </footer>
     </div>
 
-  </body>
+</body>
 
 </html>
