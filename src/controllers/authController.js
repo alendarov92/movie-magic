@@ -12,7 +12,7 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
     const userData = req.body;
 
-    await authService.createUser(userData);
+    await authService.register(userData);
 
     res.redirect('/')
 
@@ -22,6 +22,17 @@ router.post('/register', async (req, res) => {
 // === LOGIN
 router.get('/login', (req, res) => {
     res.render('auth/login')
+})
+
+router.post('login', async (req, res) => {
+   const {email, password} = req.body;
+
+   const tokem = await authService.login({email, password});
+
+   // TODO: Add token to cookie
+
+   res.redirect('/')
+
 })
 
 
