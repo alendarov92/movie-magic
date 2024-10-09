@@ -1,5 +1,8 @@
 import bcrypt from 'bcrypt';
 import User from "../models/User.js";
+import jwt from 'jsonwebtoken'
+
+const SECRET = 'sdaf6asd98f76sa9d87f6asd897f69a'
 
 const register = (userData) => {
   // TODO: CHECK IF USER EXIST
@@ -19,11 +22,18 @@ const login = async ({email, password}) => {
 
     if (!isValid) {
         throw new Error('Password dosent match!');
-        
-    }
+    };
+
     // TODO: GENERATE JWT TOKEN
+    const payload = {
+        _id: user._id,
+        email
+    }
+    const token = jwt.sign(payload, SECRET, {expiresIn: '2h'})
+
 
     // TODO: RETURN JWT TOKEN
+    return token
 }
 
 
