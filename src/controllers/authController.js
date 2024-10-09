@@ -10,9 +10,9 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    const userData = req.body;
+    const {email, password, repeatPassword} = req.body;
 
-    await authService.register(userData);
+    await authService.register(email, password);
 
     res.redirect('/')
 
@@ -24,12 +24,13 @@ router.get('/login', (req, res) => {
     res.render('auth/login')
 })
 
-router.post('login', async (req, res) => {
+router.post('/login', async (req, res) => {
    const {email, password} = req.body;
 
-   const tokem = await authService.login({email, password});
+   const token = await authService.login(email, password);
 
    // TODO: Add token to cookie
+   res.cookie('auth', token, {httpOnly: true})
 
    res.redirect('/')
 

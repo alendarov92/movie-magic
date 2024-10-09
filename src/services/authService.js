@@ -4,24 +4,24 @@ import jwt from 'jsonwebtoken'
 
 const SECRET = 'sdaf6asd98f76sa9d87f6asd897f69a'
 
-const register = (userData) => {
+const register = (email, password) => {
   // TODO: CHECK IF USER EXIST
-    return User.create(userData)
+    return User.create({email, password})
 };
 
-const login = async ({email, password}) => {
+const login = async (email, password) => {
     // TODO: CHECK IF USER EXIST
-    const user = await User.findOne(userData.email);
+    const user = await User.findOne({email}); 
 
     if (!user) {
         throw new Error('User dosent exist!')
     }
 
     // TODO: VALIDATE PASSWORD
-    const isValid = bcrypt.compare(password, user.password)
+    const isValid = await bcrypt.compare(password, user.password)
 
-    if (!isValid) {
-        throw new Error('Password dosent match!');
+    if (!isValid) { 
+        throw new Error('Password dosent match!'); 
     };
 
     // TODO: GENERATE JWT TOKEN
