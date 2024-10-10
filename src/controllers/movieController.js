@@ -71,11 +71,23 @@ router.get('/:movieId/delete', async (req, res) => {
     res.redirect('/')
 
 })
-
+ 
 // ======> EDIT
 
-router.get('/:movieId/edit', (req, res) => {
-   res.render('movies/edit')
+router.get('/:movieId/edit', async (req, res) => {
+    const movieId = req.params.movieId;
+    const movie = await movieSurvice.getOne(movieId).lean();
+
+   res.render('movies/edit', {movie})
+})
+
+router.post('/:movieId/edit',async (req, res) => {
+     const movieData = req.body;
+     const movieId = req.params.movieId;
+
+     await movieSurvice.edit(movieId, movieData);
+
+     res.redirect(`/movies/${movieId}/details`)
 })
 
 
