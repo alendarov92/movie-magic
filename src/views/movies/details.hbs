@@ -19,16 +19,14 @@
 
                 <p class="disc">Description: {{movie.description}}</p>
 
+                <a href="/movies/{{movie._id}}/attach" class="details" style="display: inline-block;">Attach</a>
 
-                <div>
-
-                    <a href="/movies/{{movie._id}}/attach" class="details" style="display: inline-block;">Attach</a>
-                </div>
-                 <div class="details-btn">
-                            <button id="edit-button">Edit</button>
-                            <a href="/movies/{{movie._id}}/delete" id="delete-button">Delete</a>
-                        </div>
             </div>
+            <div class="details-btn">
+                <button id="edit-button">Edit</button>
+                <a href="/movies/{{movie._id}}/delete" id="delete-button">Delete</a>
+            </div>
+
         </div>
         <div class="card_right">
             <img src=" {{movie.imageUrl}}" alt="image">
@@ -37,7 +35,7 @@
 
 
     <div class="main-cast-card"></div>
-{{#each movie.casts}}
+    {{#each movie.casts}}
     <div class="cast-card">
         <div class="card-img">
             <img src="{{imageUrl}}" alt="cast">
@@ -49,7 +47,7 @@
             <h3>Name in Movie: {{'/'}}</h3>
         </div>
     </div>
-{{/each}}
+    {{/each}}
     </div>
 
 

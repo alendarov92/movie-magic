@@ -17,8 +17,9 @@ router.get('/create', (req, res) => {
 //MAKING THE LOGIC
 router.post('/create', async (req, res) => {
     const movieData = req.body;
+    const ownerId = req.user?._id;
 
-    await movieSurvice.create(movieData)
+    await movieSurvice.create(movieData, ownerId)
 
     res.redirect('/')
 })
@@ -36,6 +37,8 @@ router.get('/search', async (req, res) => {
 router.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieSurvice.getOne(movieId).lean();
+
+    // const isOwner = req.user?._id == movie.
 
     res.render('movies/details', { movie })
 })
