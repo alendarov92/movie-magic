@@ -1,8 +1,8 @@
 import Movie from '../models/Movie.js';
 
 
-const getAll =  (filter = {}) => {
-    let moviesQuery =  Movie.find();
+const getAll = (filter = {}) => {
+    let moviesQuery = Movie.find();
 
     if (filter.search) {
         // moviesQuery = moviesQuery.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()))
@@ -20,12 +20,12 @@ const getAll =  (filter = {}) => {
         moviesQuery.where('year').equals(filter.year);
     }
 
-    
+
     return moviesQuery;
 };
 
 
-const create = (movie, ownerId) => Movie.create({...movie, owner: ownerId});
+const create = (movie, ownerId) => Movie.create({ ...movie, owner: ownerId });
 
 
 const getOne = (movieId) => Movie.findById(movieId).populate('casts');
@@ -34,7 +34,7 @@ const attach = (movieId, castId) => {
     return Movie.findByIdAndUpdate(movieId, { $push: { casts: castId } })
 }
 
-const remove = (movieId) => Movie.deleteOne({_id: movieId})
+const remove = (movieId) => Movie.findByIdAndDelete(movieId)
 
 export default {
     getAll,

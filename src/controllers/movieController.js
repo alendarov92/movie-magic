@@ -72,4 +72,11 @@ router.get('/:movieId/delete', async (req, res) => {
 
 })
 
+// ======> EDIT
+
+router.get('/:movieId/edit', (req, res) => {
+   res.render('movies/edit')
+})
+
+
 export default router;  
