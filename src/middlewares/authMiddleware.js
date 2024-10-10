@@ -11,23 +11,32 @@ export const authMiddleware = (req, res, next) => {
     }
     // TODO: Validate token
     try {
-       const decodedToken = jwt.verify(token, JWT_SECRET); 
+        const decodedToken = jwt.verify(token, JWT_SECRET);
 
-       const user = {
-        _id: decodedToken._id,
-        email: decodedToken.email,
-       }
+        const user = {
+            _id: decodedToken._id,
+            email: decodedToken.email,
+        }
 
-       req.user = user
-       res.locals.userId = user._id
-       res.locals.userEmail = user.email
-       res.locals.isAuthenticated = true
+        req.user = user
+        req.isAuthenticated = true
+        res.locals.userId = user._id
+        res.locals.userEmail = user.email
+        res.locals.isAuthenticated = true
 
-       return next()
+        return next()
     } catch (error) {
         res.clearCookie('auth');
 
         res.redirect('/auth/login')
     }
     // TODO: Add user data to request
+};
+
+export const isAuth = (req, res, next) => {
+    if (!req.isAuthenticated) {
+        return res.redirect('/auth/login')
+    }
+
+    return next()
 }
