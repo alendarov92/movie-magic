@@ -1,17 +1,16 @@
 import bcrypt from 'bcrypt';
 import User from "../models/User.js";
 import jwt from 'jsonwebtoken'
-
-const SECRET = 'sdaf6asd98f76sa9d87f6asd897f69a'
+import { JWT_SECRET } from '../config/constants.js';
 
 const register = (email, password) => {
-  // TODO: CHECK IF USER EXIST
-    return User.create({email, password})
+    // TODO: CHECK IF USER EXIST
+    return User.create({ email, password })
 };
 
 const login = async (email, password) => {
     // TODO: CHECK IF USER EXIST
-    const user = await User.findOne({email}); 
+    const user = await User.findOne({ email });
 
     if (!user) {
         throw new Error('User dosent exist!')
@@ -20,8 +19,8 @@ const login = async (email, password) => {
     // TODO: VALIDATE PASSWORD
     const isValid = await bcrypt.compare(password, user.password)
 
-    if (!isValid) { 
-        throw new Error('Password dosent match!'); 
+    if (!isValid) {
+        throw new Error('Password dosent match!');
     };
 
     // TODO: GENERATE JWT TOKEN
@@ -29,7 +28,7 @@ const login = async (email, password) => {
         _id: user._id,
         email
     }
-    const token = jwt.sign(payload, SECRET, {expiresIn: '2h'})
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '2h' })
 
 
     // TODO: RETURN JWT TOKEN
@@ -37,4 +36,7 @@ const login = async (email, password) => {
 }
 
 
-export default { register,login};
+export default {
+    register,
+    login
+};

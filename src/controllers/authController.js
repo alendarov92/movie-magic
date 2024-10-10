@@ -10,7 +10,7 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    const {email, password, repeatPassword} = req.body;
+    const { email, password, repeatPassword } = req.body;
 
     await authService.register(email, password);
 
@@ -25,14 +25,14 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-   const {email, password} = req.body;
+    const { email, password } = req.body;
 
-   const token = await authService.login(email, password);
+    const token = await authService.login(email, password);
 
-   // TODO: Add token to cookie
-   res.cookie('auth', token, {httpOnly: true})
+    // TODO: Add token to cookie
+    res.cookie('auth', token, { httpOnly: true })
 
-   res.redirect('/')
+    res.redirect('/')
 
 })
 
