@@ -38,9 +38,9 @@ router.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieSurvice.getOne(movieId).lean();
 
-    // const isOwner = req.user?._id == movie.
+    const isOwner = req.user?._id == movie.owner
 
-    res.render('movies/details', { movie })
+    res.render('movies/details', { movie, isOwner })
 })
 
 // =======> Cast attach
