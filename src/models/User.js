@@ -5,7 +5,10 @@ const SALT_ROUNDS = 10
 
 
 const userSchema = new Schema({
-    email: String,
+    email: {
+      type: String,
+      unique: true,  
+    },
     password: {
         type: String,
         minLength: [3, 'Your password is too short!!!']

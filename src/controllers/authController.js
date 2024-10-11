@@ -1,5 +1,6 @@
 import { Router } from "express";
 import authService from '../services/authService.js'
+import validator from 'validator';
 
 const router = Router();
 
@@ -7,12 +8,19 @@ const router = Router();
 // ==== REGISTER
 router.get('/register', (req, res) => {
     res.render('auth/register')
-})
+});
 
 router.post('/register', async (req, res) => {
     const { email, password, repeatPassword } = req.body;
 
+    if (!validator.isEmail(email)) {
+       return res.status(400).end();
+    }
+
     await authService.register(email, password);
+    
+    const token = await authService.login(email, password);
+    res.cookie('auth', token, { httpOnly: true })
 
     res.redirect('/')
 
@@ -22,7 +30,7 @@ router.post('/register', async (req, res) => {
 // === LOGIN
 router.get('/login', (req, res) => {
     res.render('auth/login')
-})
+});
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -34,13 +42,14 @@ router.post('/login', async (req, res) => {
 
     res.redirect('/')
 
-})
+});
 
+// === LOGOUT
 router.get('/logout', (req, res) => {
    res.clearCookie('auth')
 
    res.redirect('/auth/login')
-})
+});
 
 
 
